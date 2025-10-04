@@ -37,7 +37,7 @@ int main(){
     placeCoin(table, 4, playerA);
     placeCoin(table, 3, playerA);
     placeCoin(table, 4, playerB);
-    placeCoin(table, 1, playerA);
+    placeCoin(table, 4, playerA);
 
     int n = checkSuccess(table, 2, 3, playerA);
     printf("%d", n);
