@@ -115,7 +115,8 @@ int checkSuccess(char table[6][7], int row, int column, char player){
         i = zero;
         j = colon-raw-zero;
     } else {
-
+        i = raw-colon-zero;
+        j = zero;
     }
     
     for (; i < 7 & j ,,,;) {
