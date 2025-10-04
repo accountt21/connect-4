@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 void display(char table[6][7]);
-void placeCoin(char table[6][7], int column, char player);
-int checkSuccess(char table[6][7], int row, int column, char player);
+int placeCoin(char table[6][7], int column, char player);
+char checkSuccess(char table[6][7], int row, int column, char player);
 
 int main(){
     //initial print statements
@@ -26,21 +26,42 @@ int main(){
         }
     }
 
-    //methods 
-    display(table);
-    placeCoin(table, 1, playerA);
-    placeCoin(table, 2, playerB);
-    placeCoin(table, 3, playerA);
-    placeCoin(table, 4, playerB);
-    placeCoin(table, 2, playerA);
-    placeCoin(table, 3, playerB);
-    placeCoin(table, 4, playerA);
-    placeCoin(table, 3, playerA);
-    placeCoin(table, 4, playerB);
-    placeCoin(table, 4, playerA);
+    //game
 
-    int n = checkSuccess(table, 2, 3, playerA);
-    printf("%d", n);
+    display(table);
+
+    int attempts = 0;
+    int chosen_column;
+    int curr_row;
+    char success = '0';
+    
+    while (success == '0' && attempts < 43)
+    {
+        printf("\nPlayer A, choose a column (1-7): ");
+        scanf(" %d", &chosen_column);
+        curr_row = placeCoin(table, chosen_column, playerA);
+        success = checkSuccess(table, curr_row, chosen_column, playerA);
+        if(success != '0'){
+            break;
+        }
+        attempts++;
+
+        printf("\nPlayer B, choose a column (1-7): ");
+        scanf(" %d", &chosen_column);
+        curr_row = placeCoin(table, chosen_column, playerB);
+        success = checkSuccess(table, curr_row, chosen_column, playerB);
+        if(success != '0'){
+            break;
+        }
+        attempts++;
+    }
+    
+    if(success == 0){
+        printf("\nNo player wins");
+    }
+    else{
+        printf("\nPlayer %c wins!", success);
+    }
 }
 
 void display(char table[6][7]){
@@ -55,32 +76,42 @@ void display(char table[6][7]){
     printf("\n");
 }
 
-void placeCoin(char table[6][7], int column, char player){
+int placeCoin(char table[6][7], int column, char player){
     int row = 5;
     column--;
     char* p = &table[row][column];
      
-    while (*p != '*')
+    while (*p != '*' && row > -1)
     {
         row--;
         p = &table[row][column];
     }
 
-    *p = player;
-
-    display(table);
+    if(row == -1){
+        printf("\nThe column %d is full, choose another one (1-7): ", column+1);
+        scanf(" %d", &column);
+        return placeCoin(table, column, player);
+    }
+    else{
+        *p = player;
+        display(table);
+        return row;
+    }
+   
+    return row;
 }
 
-int checkSuccess(char table[6][7], int row, int column, char player){
+char checkSuccess(char table[6][7], int row, int column, char player){
     int distance = 0;
-    
+    column--;
+
     //check vertically 
 
     for(int i = 0; i < 6; i++){
         if(table[i][column] == player){
             distance++;
             if(distance == 4){
-                return 1;
+                return player;
             }
         }
         else{
@@ -96,7 +127,7 @@ int checkSuccess(char table[6][7], int row, int column, char player){
         if(table[row][j] == player){
             distance++;
             if(distance == 4){
-                return 1;
+                return player;
             }
         }
         else{
@@ -128,7 +159,7 @@ int checkSuccess(char table[6][7], int row, int column, char player){
         if(table[i++][j++] == player){
             distance++;
             if(distance == 4){
-                return 1;
+                return player;
             }
         }
         else{
@@ -152,7 +183,7 @@ int checkSuccess(char table[6][7], int row, int column, char player){
         if(table[i++][j--] == player){
             distance++;
             if(distance == 4){
-                return 1;
+                return player;
             }
         }
         else{
@@ -160,7 +191,7 @@ int checkSuccess(char table[6][7], int row, int column, char player){
         }
     }
 
-    return 0;
+    return '0';
     
 }
 
