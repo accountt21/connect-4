@@ -57,10 +57,10 @@ int main(){
     }
     
     if(success == 0){
-        printf("\nNo player wins");
+        printf("\nNo player wins\n\n");
     }
     else{
-        printf("\nPlayer %c wins!", success);
+        printf("\nPlayer %c wins!\n\n", success);
     }
 }
 
