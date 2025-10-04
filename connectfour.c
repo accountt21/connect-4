@@ -3,6 +3,7 @@
 
 void display(char table[6][7]);
 void placeCoin(char table[6][7], int column, char player);
+int checkSuccess(char table[6][7], int row, int column, char player);
 
 int main(){
     //initial print statements
@@ -27,11 +28,16 @@ int main(){
 
     //methods 
     display(table);
-    placeCoin(table, 2, playerA);
+    placeCoin(table, 1, playerA);
     placeCoin(table, 2, playerB);
-    placeCoin(table, 3, playerA);
-    placeCoin(table, 1, playerB);
-    placeCoin(table, 4, playerA);
+    placeCoin(table, 1, playerA);
+    placeCoin(table, 3, playerB);
+    placeCoin(table, 1, playerA);
+    placeCoin(table, 3, playerB);
+    placeCoin(table, 1, playerA);
+
+    int n = checkSuccess(table, 2, 0, playerA);
+    printf("%d", n);
 }
 
 void display(char table[6][7]){
@@ -62,5 +68,70 @@ void placeCoin(char table[6][7], int column, char player){
     display(table);
 }
 
+int checkSuccess(char table[6][7], int row, int column, char player){
+    int distance = 0;
+    
+    //check vertically 
 
+    for(int i = 0; i < 6; i++){
+        if(table[i][column] == player){
+            distance++;
+            if(distance == 4){
+                return 1;
+            }
+        }
+        else{
+            distance = 0;
+        }
+    }
+
+    //check horizontal
+    
+    for(int j = 0; j < 7; j++){
+        if(table[row][j] == player){
+            distance++;
+            if(distance == 4){
+                return 1;
+            }
+        }
+        else{
+            distance = 0;
+        }
+    }
+
+    return 0;
+
+    //check diagonal
+
+    int raw = row;
+    int colon = column;
+    int zero = 0;
+    int one = 1;
+
+    int i = 0;
+    int j = 0;
+
+    if (raw <= colon) {
+        i = zero;
+        j = colon-raw-zero;
+    } else {
+
+    }
+    
+    for (; i < 7 & j ,,,;) {
+        if(table[i][j] == player){
+            distance++;
+            if(distance == 4){
+                return 1;
+            }
+        }
+        else{
+            distance = 0;
+        }
+
+        i++;
+        j++;
+    }
+    
+}
 

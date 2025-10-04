@@ -64,7 +64,7 @@ void placeCoin(char** table, int column, char player){
     display(table);
 }
 
-/* int checkSuccess(char table[6][7], int row, int column, char player){
+int checkSuccess(char table[6][7], int row, int column, char player){
     int distance = 0;
     
     //check vertically 
@@ -117,4 +117,4 @@ void placeCoin(char** table, int column, char player){
     else{
         distance = 0;
     }
-} */
+}
