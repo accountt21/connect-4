@@ -30,13 +30,16 @@ int main(){
     display(table);
     placeCoin(table, 1, playerA);
     placeCoin(table, 2, playerB);
-    placeCoin(table, 1, playerA);
+    placeCoin(table, 3, playerA);
+    placeCoin(table, 4, playerB);
+    placeCoin(table, 2, playerA);
     placeCoin(table, 3, playerB);
-    placeCoin(table, 1, playerA);
-    placeCoin(table, 3, playerB);
+    placeCoin(table, 4, playerA);
+    placeCoin(table, 3, playerA);
+    placeCoin(table, 4, playerB);
     placeCoin(table, 1, playerA);
 
-    int n = checkSuccess(table, 2, 0, playerA);
+    int n = checkSuccess(table, 2, 3, playerA);
     printf("%d", n);
 }
 
@@ -85,6 +88,8 @@ int checkSuccess(char table[6][7], int row, int column, char player){
         }
     }
 
+    distance = 0;
+
     //check horizontal
     
     for(int j = 0; j < 7; j++){
@@ -99,27 +104,28 @@ int checkSuccess(char table[6][7], int row, int column, char player){
         }
     }
 
-    return 0;
+    distance = 0;
 
     //check diagonal
 
-    int raw = row;
-    int colon = column;
-    int zero = 0;
-    int one = 1;
-
+    //find the index of the start of the top-left bottom-right diagonal
     int i = 0;
     int j = 0;
 
-    if (raw <= colon) {
-        i = zero;
-        j = colon-raw-zero;
-    } else {
-
+    if (row <= column) {
+        i = 0;
+        j = column-row;
+    } 
+    else {
+        i = row-column;
+        j = 0;
     }
+
+    //iterate
     
-    for (; i < 7 & j ,,,;) {
-        if(table[i][j] == player){
+    while (i < 6 && j < 7)
+    {
+        if(table[i++][j++] == player){
             distance++;
             if(distance == 4){
                 return 1;
@@ -128,10 +134,33 @@ int checkSuccess(char table[6][7], int row, int column, char player){
         else{
             distance = 0;
         }
-
-        i++;
-        j++;
     }
+
+    //find the index of the start of the bottom-left top-right diagonal
+
+    if (row + column < 7) {
+        i = 0;
+        j = row + column;
+    } else {
+        i = row + column - 6;
+        j = 6;
+    }
+
+    //iterate
+
+    while (i < 6 && j >= 0){
+        if(table[i++][j--] == player){
+            distance++;
+            if(distance == 4){
+                return 1;
+            }
+        }
+        else{
+            distance = 0;
+        }
+    }
+
+    return 0;
     
 }
 
