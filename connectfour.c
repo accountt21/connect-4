@@ -222,7 +222,7 @@ int chooseColumn(char table[6][7], char difficulty){
         srand(time(NULL));
         while (1)
         {
-            r = rand() % 6 + 1;
+            r = rand() % 7 + 1;
             if(table[0][r-1] == '*'){
                 break;
             }
