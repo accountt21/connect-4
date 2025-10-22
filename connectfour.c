@@ -1,21 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void display(char table[6][7]);
 int placeCoin(char table[6][7], int column, char player);
 char checkSuccess(char table[6][7], int row, int column, char player);
+int chooseColumn(char table[6][7], char difficulty);
 
 int main(){
     //initial print statements
     printf("Welcome to Connect Four!");
+
+    char playerType;
+    char difficulty;
+    printf("\nPress H to play against a human and B to play against a bot: ");
+    scanf(" %c", &playerType);
 
     char playerA;
     char playerB;
 
     printf("\nEnter Player A: ");
     scanf(" %c", &playerA);
-    printf("Enter Player B: ");
-    scanf(" %c", &playerB);
+
+    if(playerType == 'H'){
+        printf("Enter Player B: ");
+        scanf(" %c", &playerB);
+    }
+    else{
+        playerB = 'B';
+        printf("\nEnter the bot difficulty (E for easy, M for medium, H for hard): ");
+        scanf(" %c", &difficulty);
+    }
 
     //initialize and fill the 2D array
     char table[6][7];
@@ -46,8 +61,14 @@ int main(){
         }
         attempts++;
 
-        printf("\nPlayer B, choose a column (1-7): ");
-        scanf(" %d", &chosen_column);
+        if(playerType == 'H'){
+            printf("\nPlayer B, choose a column (1-7): ");
+            scanf(" %d", &chosen_column);
+        }
+        else{
+            chosen_column = chooseColumn(table, difficulty);
+            printf("\nBot chose %d\n", chosen_column);
+        }
         curr_row = placeCoin(table, chosen_column, playerB);
         success = checkSuccess(table, curr_row, chosen_column, playerB);
         if(success != '0'){
@@ -195,3 +216,17 @@ char checkSuccess(char table[6][7], int row, int column, char player){
     
 }
 
+int chooseColumn(char table[6][7], char difficulty){
+    int r;
+    if(difficulty == 'E'){
+        srand(time(NULL));
+        while (1)
+        {
+            r = rand() % 6 + 1;
+            if(table[0][r-1] == '*'){
+                break;
+            }
+        }
+    }
+    return r;
+}
