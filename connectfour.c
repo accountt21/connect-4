@@ -265,11 +265,9 @@ int chooseColumn(char table[6][7], char difficulty, int row, int column, char pl
         while (i > 0)
         {  
             if(oldMove[0] != -1 && checkSuccess(table, oldMove[0], oldMove[1], playerB, i) == playerB && nextMove != -1){
-                printf("\nOFFENSE\n");
                 return nextMove + 1;
             }
             else if(checkSuccess(table, row, column, playerA, i) == playerA && nextMove != -1){
-                printf("\nDEFENSE\n");
                 oldMove[1] = nextMove + 1;
                 return nextMove + 1;
             }
