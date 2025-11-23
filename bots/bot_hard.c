@@ -8,7 +8,11 @@
 #include "../headers/board.h"
 
 
-// a few problems occured with the scoring function suggested in the pdf so I made a simpler one. This is not guaranteed to be optimal but it works for now.
+// TODO: a few problems occured with the scoring function suggested in the pdf so I made a simpler one that doesn't take into consideration the number of moves the way it was in the document. This is not guaranteed to be optimal but it works for now.
+// TODO: bitwise operations seemed unnecessary considering the bot could run without issues on my machine ~(0.13 seconds per request) (m3 macbook air)
+// TODO: bitwise optimizations could be made that could provide significant speedups when making a large number of requests.
+
+
 static const int WIN_SCORE = 1000000;
 static const int THREE_SCORE = 100;
 static const int TWO_SCORE = 10;
