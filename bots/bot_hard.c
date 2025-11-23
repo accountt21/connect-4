@@ -246,4 +246,3 @@ BotStrategy bot_hard_strategy(void) {
 	};
 	return strategy;
 }
-
