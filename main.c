@@ -21,7 +21,7 @@ typedef struct {
 
 typedef struct {
     int row;
-    int column; // zero-based column index
+    int column; // this is zero-based column index
 } Move;
 
 static void clear_input_buffer(void) {

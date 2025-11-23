@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -std=c11 -Iheaders
-TARGET = connect4
+TARGET = app
 
 SRCS = \
 	main.c \

@@ -2,11 +2,3 @@
 
 *.out
 *.exe
-
-/build/
-/bin/
-/obj/
-
-server
-client
-connectfour
