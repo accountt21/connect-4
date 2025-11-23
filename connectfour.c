@@ -310,4 +310,3 @@ int checkColumn(char table[6][7], int row, int column){
         return 0;
     }
 }
-

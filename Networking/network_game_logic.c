@@ -1,8 +1,3 @@
-
-
-
-
-
 // this code logic is only for server. do not edit for assignment.
 
 #include <stdio.h>

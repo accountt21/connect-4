@@ -1,12 +1,10 @@
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <time.h>
-#include "game_logic.c"
+#include "network_game_logic.c"
 
 #define PORT 8080
 #define BUFFER_SIZE 1024
