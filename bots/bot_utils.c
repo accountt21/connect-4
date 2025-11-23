@@ -3,9 +3,9 @@
 #include <stdlib.h>
 
 int bot_utils_simulate_move(const Board *board, int column, char player, Board *snapshot) {
-    if (!board || !snapshot || column < 1 || column > BOARD_COLS) {
+    if (!board || !snapshot || column < 1 || column > BOARD_COLS)
         return -1;
-    }
+
 
     *snapshot = *board;
     int col_index = column - 1;
@@ -19,23 +19,22 @@ int bot_utils_simulate_move(const Board *board, int column, char player, Board *
     return -1;
 }
 
-int bot_utils_random_valid_column(const Board *board) {
-    if (!board) {
+int bot_utils_random_valid_column(const Board *board) 
+{
+    if (!board) 
         return -1;
-    }
+
 
     int available_columns[BOARD_COLS];
     int count = 0;
 
-    for (int column = 1; column <= BOARD_COLS; column++) {
-        if (board_is_column_available(board, column)) {
+    for (int column = 1; column <= BOARD_COLS; column++) 
+        if (board_is_column_available(board, column)) 
             available_columns[count++] = column;
-        }
-    }
-
-    if (count == 0) {
+ 
+    if (count == 0)
         return -1;
-    }
+
 
     int index = rand() % count;
     return available_columns[index];

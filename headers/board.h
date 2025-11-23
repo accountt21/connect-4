@@ -14,4 +14,4 @@ int board_place_coin(Board *board, int column, char player);
 char board_check_success(const Board *board, int row, int column, char player, int n);
 int board_is_column_available(const Board *board, int column);
 
-#endif // BOARD_H
+#endif

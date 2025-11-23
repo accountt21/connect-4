@@ -5,4 +5,4 @@
 
 BotStrategy bot_easy_strategy(void);
 
-#endif // BOT_EASY_H
+#endif

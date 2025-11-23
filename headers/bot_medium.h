@@ -5,4 +5,4 @@
 
 BotStrategy bot_medium_strategy(void);
 
-#endif // BOT_MEDIUM_H
+#endif

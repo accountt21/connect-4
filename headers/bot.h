@@ -14,7 +14,7 @@ typedef struct {
     char bot_token;
     char opponent_token;
     int last_move_row;
-    int last_move_column; // zero-based column index, -1 when unknown
+    int last_move_column;
 } BotRequest;
 
 typedef int (*BotDecisionFn)(const BotRequest *request);
@@ -25,4 +25,4 @@ typedef struct {
     BotDecisionFn decide;
 } BotStrategy;
 
-#endif // BOT_H
+#endif

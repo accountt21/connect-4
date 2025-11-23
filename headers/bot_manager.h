@@ -15,4 +15,4 @@ int bot_manager_choose_column(const BotManager *manager, BotDifficulty difficult
 BotDifficulty bot_manager_difficulty_from_char(char symbol);
 const char *bot_manager_difficulty_label(BotDifficulty difficulty);
 
-#endif // BOT_MANAGER_H
+#endif

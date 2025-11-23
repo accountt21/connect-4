@@ -9,9 +9,11 @@ static int find_immediate_play(const BotRequest *request, char token) {
 
     Board snapshot;
     for (int column = 1; column <= BOARD_COLS; column++) {
-        if (!board_is_column_available(request->board, column)) {
+        
+        
+        if (!board_is_column_available(request->board, column))
             continue;
-        }
+
 
         int row = bot_utils_simulate_move(request->board, column, token, &snapshot);
         if (row != -1 && board_check_success(&snapshot, row, column, token, 4) == token) {

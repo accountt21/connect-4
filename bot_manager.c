@@ -6,6 +6,9 @@
 #include "headers/bot_medium.h"
 #include "headers/bot_hard.h"
 
+// this is a bot orchestrator that selects the appropriate bot strategy based on difficulty level.
+// we decided to write this for better modularity and separation of concerns.
+
 void bot_manager_init(BotManager *manager) {
     if (!manager) {
         return;
