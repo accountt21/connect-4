@@ -149,6 +149,8 @@ static int acquire_bot_column(const Board *board, const BotManager *manager, Bot
     return column;
 }
 
+// Speculation utilities moved to mt_speculation.c
+
 int main(void) {
     srand((unsigned int)time(NULL));
 
@@ -181,7 +183,6 @@ int main(void) {
                 .last_move_row = last_moves[0].row,
                 .last_move_column = last_moves[0].column
             };
-
             column = acquire_bot_column(&board, &manager, config.difficulty, &request);
             if (column == -1) {
                 puts("No valid moves available for the bot.");

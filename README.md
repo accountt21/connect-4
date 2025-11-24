@@ -36,6 +36,18 @@ Inside the container, the game starts immediately and you can interact with it v
 and output (the same prompts you see when running `./app` locally).
 
 
+## Multithreading
+
+Summary:
+
+Good for bot x human matches on one level and for bot-bot matches on another.
+
+Explaination:
+
+How we believe multithreading would help here is by simultaneously doing expensive bot compution (that takes approximately 0.13 seconds on an M3 Macbook Air) while taking user input, improving `perceived responsiveness.` This is important because this way, since the user is taking time to enter their move, it doesn't seem like the computation took place.
+
+Multithreading can further help by parallelizing search (root move splitting, speculative parallel alpha-beta) or running multiple matches concurrently.
+
 ## Appendix: 
 
 `Algorithmic Analylsis.pdf`.
