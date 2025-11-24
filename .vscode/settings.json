@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "inet.h": "c",
-        "bot_utils.h": "c",
-        "bot.h": "c"
-    }
-}
