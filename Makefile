@@ -10,7 +10,7 @@ SRCS = \
 	bots/bot_easy.c \
 	bots/bot_medium.c \
 	bots/bot_hard.c \
-	bots/bot_hard_mt.c
+	bots/bot_hard_bb.c
 
 OBJS = $(SRCS:.c=.o)
 

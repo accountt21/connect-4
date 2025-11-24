@@ -11,5 +11,3 @@ COPY . .
 RUN make
 
 CMD ["./app"]
-
-RUN make clean

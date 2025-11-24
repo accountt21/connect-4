@@ -97,6 +97,17 @@ static int minimax(const Board *board, int depth, int alpha, int beta, int maxim
                    char ai_token, char human_token, int *out_col) {
     int valid[BOARD_COLS];
     int n_valid = valid_locations(board, valid);
+    // reorder valid moves by proximity to center
+    int center = BOARD_COLS / 2;
+    for (int i = 0; i < n_valid - 1; i++) {
+        for (int j = i + 1; j < n_valid; j++) {
+            if (abs(valid[j] - center) < abs(valid[i] - center)) {
+                int tmp = valid[i];
+                valid[i] = valid[j];
+                valid[j] = tmp;
+            }
+        }
+    }
     int is_terminal = detect_win(board, ai_token) || detect_win(board, human_token) || (n_valid == 0);
 
     if (depth == 0 || is_terminal) {
@@ -197,6 +208,25 @@ int bot_hard_decide_parallel(const BotRequest *request) {
         }
         return chosen;
     }
+
+    // immediate win/block check
+    for (int i = 0; i < n_valid; i++) {
+        int col = valid[i];
+        Board child;
+        int row = bot_utils_simulate_move(&snapshot, col, request->bot_token, &child);
+        if (row != -1 && detect_win(&child, request->bot_token)) {
+            return col; // instant win
+        }
+    }
+    for (int i = 0; i < n_valid; i++) {
+        int col = valid[i];
+        Board child;
+        int row = bot_utils_simulate_move(&snapshot, col, request->opponent_token, &child);
+        if (row != -1 && detect_win(&child, request->opponent_token)) {
+            return col; // block opponent
+        }
+    }
+
 
     RootTask tasks[BOARD_COLS];
     pthread_t threads[BOARD_COLS];
