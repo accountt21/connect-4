@@ -7,7 +7,7 @@ This project is a console-based Connect 4 game in C with:
 - A lightweight **Alpine-based Docker image** to build and run the game.
 
 ## Agent
-Explained in the PDF attached in the appendix.
+Explained in the PDF attached.
 
 ## Networking (experimental)
 
@@ -48,6 +48,3 @@ How we believe multithreading would help here is by simultaneously doing expensi
 
 Multithreading can further help by parallelizing search (root move splitting, speculative parallel alpha-beta) or running multiple matches concurrently.
 
-## Appendix: 
-
-`Algorithmic Analylsis.pdf`.
