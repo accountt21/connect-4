@@ -1,10 +1,10 @@
 # Connect 4 (Hard-Impenetrable-Agent)
 
-This project is a console-based Connect 4 game in C with:
+This project is a Connect 4 game in C with:
 
-- A **hard bot** that uses a Bitboard + Negamax + Alpha-Beta search.
-- Optional **networking experiments** (separate from the main game loop).
-- A lightweight **Alpine-based Docker image** to build and run the game.
+- A *hard bot* that uses a Bitboard + Negamax + Alpha-Beta search.
+- Optional *networking experiments* (separate from the main game loop).
+- A lightweight *Alpine-based Docker image* to build and run the game.
 
 ## Agent
 Explained in the PDF attached.
