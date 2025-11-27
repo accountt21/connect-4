@@ -17,6 +17,7 @@ typedef struct {
     char player_a_token;
     char player_b_token;
     BotDifficulty difficulty;
+    int human_starts_first;
 } GameConfig;
 
 typedef struct {
@@ -88,10 +89,28 @@ static BotDifficulty prompt_bot_difficulty(void) {
     }
 }
 
+static int prompt_human_starts_first(void) {
+    while (1) {
+        char choice;
+        printf("Do you want to go first? (y/n): ");
+        if (scanf(" %c", &choice) != 1) {
+            clear_input_buffer();
+            puts("Invalid input. Please enter Y or N.");
+            continue;
+        }
+        clear_input_buffer();
+        choice = (char)toupper((unsigned char)choice);
+        if (choice == 'Y') return 1;
+        if (choice == 'N') return 0;
+        puts("Please enter Y to go first or N to let the bot start.");
+    }
+}
+
 static GameConfig collect_game_config(void) {
     GameConfig config;
     config.mode = prompt_game_mode();
     config.player_a_token = prompt_player_token("Player A");
+    config.human_starts_first = 1;
 
     if (config.mode == GAME_MODE_HUMAN_VS_HUMAN) {
         config.player_b_token = prompt_player_token("Player B");
@@ -99,6 +118,7 @@ static GameConfig collect_game_config(void) {
     } else {
         config.player_b_token = 'B';
         config.difficulty = prompt_bot_difficulty();
+        config.human_starts_first = prompt_human_starts_first();
     }
 
     return config;
@@ -167,6 +187,9 @@ int main(void) {
 
     Move last_moves[2] = { { -1, -1 }, { -1, -1 } };
     char current_player_token = config.player_a_token;
+    if (config.mode == GAME_MODE_HUMAN_VS_BOT && !config.human_starts_first) {
+        current_player_token = config.player_b_token;
+    }
     char winner = '0';
     int move_count = 0;
     const int max_moves = BOARD_ROWS * BOARD_COLS;

@@ -1,6 +1,7 @@
 *.o
-
 *.out
 *.exe
 
 app
+*.csv
+*.pages
